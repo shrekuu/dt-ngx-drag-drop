@@ -46,61 +46,66 @@ export function getWellKnownMimeType( event:DragEvent ):string | null {
   return null;
 }
 
+// 不使用这个功能, 在组件中更新移动元素位置
 export function setDragData( event:DragEvent, data:DragDropData, effectAllowed:EffectAllowed ):void {
 
   // Internet Explorer and Microsoft Edge don't support custom mime types, see design doc:
   // https://github.com/marceljuenemann/angular-drag-and-drop-lists/wiki/Data-Transfer-Design
-  const mimeType = CUSTOM_MIME_TYPE + (data.type ? ("-" + data.type) : "");
-
-  const dataString = JSON.stringify( data );
-
-  try {
-
-    event.dataTransfer.setData( mimeType, dataString );
-
-  }
-  catch( e ) {
-
-    //   Setting a custom MIME type did not work, we are probably in IE or Edge.
-    try {
-
-      event.dataTransfer.setData( JSON_MIME_TYPE, dataString );
-
-    }
-    catch( e ) {
-
-      //   We are in Internet Explorer and can only use the Text MIME type. Also note that IE
-      //   does not allow changing the cursor in the dragover event, therefore we have to choose
-      //   the one we want to display now by setting effectAllowed.
-      const effectsAllowed = filterEffects( DROP_EFFECTS, effectAllowed );
-      event.dataTransfer.effectAllowed = effectsAllowed[ 0 ];
-
-      event.dataTransfer.setData( MSIE_MIME_TYPE, dataString );
-    }
-  }
+  // const mimeType = CUSTOM_MIME_TYPE + (data.type ? ("-" + data.type) : "");
+  //
+  // const dataString = JSON.stringify( data );
+  //
+  // try {
+  //
+  //   event.dataTransfer.setData( mimeType, dataString );
+  //
+  // }
+  // catch( e ) {
+  //
+  //   //   Setting a custom MIME type did not work, we are probably in IE or Edge.
+  //   try {
+  //
+  //     event.dataTransfer.setData( JSON_MIME_TYPE, dataString );
+  //
+  //   }
+  //   catch( e ) {
+  //
+  //     //   We are in Internet Explorer and can only use the Text MIME type. Also note that IE
+  //     //   does not allow changing the cursor in the dragover event, therefore we have to choose
+  //     //   the one we want to display now by setting effectAllowed.
+  //     const effectsAllowed = filterEffects( DROP_EFFECTS, effectAllowed );
+  //     event.dataTransfer.effectAllowed = effectsAllowed[ 0 ];
+  //
+  //     event.dataTransfer.setData( MSIE_MIME_TYPE, dataString );
+  //   }
+  // }
 }
 
+// 不使用这个功能, 在组件中更新移动元素位置
 export function getDropData( event:DragEvent, dragIsExternal:boolean ):DragDropData {
 
-  // check if the mime type is well known
-  const mimeType = getWellKnownMimeType( event );
+  // 返回个空的
+  return {};
 
-  // drag did not originate from [dndDraggable]
-  if( dragIsExternal === true ) {
-
-    if( mimeType !== null
-      && mimeTypeIsCustom( mimeType ) ) {
-
-      // the type of content is well known and safe to handle
-      return JSON.parse( event.dataTransfer.getData( mimeType ) );
-    }
-
-    // the contained data is unknown, let user handle it
-    return {};
-  }
-
-  // the type of content is well known and safe to handle
-  return JSON.parse( event.dataTransfer.getData( mimeType ) );
+  // // check if the mime type is well known
+  // const mimeType = getWellKnownMimeType( event );
+  //
+  // // drag did not originate from [dndDraggable]
+  // if( dragIsExternal === true ) {
+  //
+  //   if( mimeType !== null
+  //     && mimeTypeIsCustom( mimeType ) ) {
+  //
+  //     // the type of content is well known and safe to handle
+  //     return JSON.parse( event.dataTransfer.getData( mimeType ) );
+  //   }
+  //
+  //   // the contained data is unknown, let user handle it
+  //   return {};
+  // }
+  //
+  // // the type of content is well known and safe to handle
+  // return JSON.parse( event.dataTransfer.getData( mimeType ) );
 }
 
 export function filterEffects( effects:DropEffect[], allowed:EffectAllowed | DropEffect ):DropEffect[] {

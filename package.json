@@ -1,10 +1,10 @@
 {
-  "name": "ngx-drag-drop",
-  "version": "1.0.3",
+  "name": "dt-ngx-drag-drop",
+  "version": "1.0.5",
   "description": "Angular directives using the native HTML Drag And Drop API",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reppners/ngx-drag-drop.git"
+    "url": "https://github.com/shrekuu/dt-ngx-drag-drop.git"
   },
   "homepage": "https://reppners.github.io/ngx-drag-drop/",
   "author": {

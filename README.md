@@ -6,7 +6,11 @@
 
 [_Demo_](https://reppners.github.io/ngx-drag-drop/)
 
-`npm install ngx-drag-drop --save`
+`npm install dt-ngx-drag-drop --save`
+
+# 更新记录
+
+* [2018-04-28] 不使用原生 API, 在组件里根据事件手动排序
 
 **Angular directives for declarative drag and drop using the HTML5 Drag-And-Drop API**
 

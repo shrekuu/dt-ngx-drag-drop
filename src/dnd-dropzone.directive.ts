@@ -189,6 +189,7 @@ export class DndDropzoneDirective implements AfterViewInit, OnDestroy {
         return;
       }
 
+      //  不使用这个功能, 在组件中更新移动元素位置
       const data:DragDropData = getDropData( event, isExternalDrag() );
 
       if( this.isDropAllowed( data.type ) === false ) {
